@@ -20,6 +20,7 @@ public class Invaders : MonoBehaviour
     public float deltaTir;
     public float deltaDeplacement;
     private List<GameObject> shooters;
+    private GameObject newShooter;
 
     private void Awake()
     {
@@ -53,10 +54,13 @@ public class Invaders : MonoBehaviour
                 {
                     for (int j = 0; j < invadersArray[i].Length; j++)
                     {
-                        invadersArray[i][j].transform.position = new Vector3(invadersArray[i][j].transform.position.x + (1 * sens), invadersArray[i][j].transform.position.y, invadersArray[i][j].transform.position.z);
-                        if ((invadersArray[i][j].transform.position.x == 6 && sens == 1) || (invadersArray[i][j].transform.position.x == -6 && sens == -1))
+                        if (invadersArray[i][j] != null)
                         {
-                            end = true;
+                            invadersArray[i][j].transform.position = new Vector3(invadersArray[i][j].transform.position.x + (1 * sens), invadersArray[i][j].transform.position.y, invadersArray[i][j].transform.position.z);
+                            if ((invadersArray[i][j].transform.position.x == 6 && sens == 1) || (invadersArray[i][j].transform.position.x == -6 && sens == -1))
+                            {
+                                end = true;
+                            }
                         }
                     }
                 }
@@ -97,7 +101,10 @@ public class Invaders : MonoBehaviour
         {
             for (int j = 0; j < invadersArray[i].Length; j++)
             {
-                invadersArray[i][j].transform.position = new Vector3(invadersArray[i][j].transform.position.x, invadersArray[i][j].transform.position.y-1, invadersArray[i][j].transform.position.z);
+                if (invadersArray[i][j] != null)
+                {
+                    invadersArray[i][j].transform.position = new Vector3(invadersArray[i][j].transform.position.x, invadersArray[i][j].transform.position.y - 1, invadersArray[i][j].transform.position.z);
+                }
             }
         }
     }
@@ -109,6 +116,38 @@ public class Invaders : MonoBehaviour
 
     public void DestroyInvader(GameObject invader)
     {
-        
+        for (int i = 0; i < invadersArray.Length; i++)
+        {
+            for (int j = 0; j < invadersArray[i].Length; j++)
+            {
+                if (invadersArray[i][j]==invader)
+                {
+                    invadersArray[i][j] = null;
+                    if (j<invadersArray[i].Length - 1)
+                    {
+                        newShooter = invadersArray[i][j + 1];
+                    }
+                    else
+                    {
+                        newShooter = null;
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < shooters.Count; i++)
+        {
+            if (shooters[i] == invader)
+            {
+                shooters.RemoveAt(i);
+            }
+        }
+        if (newShooter != null)
+        {
+            shooters.Add(newShooter);
+        }
+
+        Destroy(invader);
+        invadersCount--;
+
     }
 }
