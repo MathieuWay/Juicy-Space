@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        gameOver += GameOver;
     }
 
     // Update is called once per frame
@@ -62,8 +63,13 @@ public class Player : MonoBehaviour
         lifeLeft--;
         if(lifeLeft <= 0)
         {
-            Debug.Log("Game Over");
+            if(gameOver != null)
             gameOver();
         }
+    }
+
+    public void GameOver()
+    {
+        Debug.Log("Game Over");
     }
 }
