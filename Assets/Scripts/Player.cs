@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player instance;
     public float speed;
     public float range;
     public float offset;
     public GameObject bulletPrefabs;
-    // Start is called before the first frame update
-    void Start()
+    public int lifeLeft;
+
+    public delegate void OnGameOver();
+    public static OnGameOver gameOver;
+
+    private void Awake()
     {
-        
+        instance = this;
     }
 
     // Update is called once per frame
@@ -30,6 +35,7 @@ public class Player : MonoBehaviour
                 transform.position = pos;
             }
         }
+
         //GO LEFT
         if (Input.GetKey(KeyCode.LeftArrow))
         {
@@ -43,10 +49,21 @@ public class Player : MonoBehaviour
                 transform.position = pos;
             }
         }
+
         //Shoot
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Instantiate(bulletPrefabs, transform.position + transform.up * offset, Quaternion.identity);
+        }
+    }
+
+    public void HitPlayer()
+    {
+        lifeLeft--;
+        if(lifeLeft <= 0)
+        {
+            Debug.Log("Game Over");
+            gameOver();
         }
     }
 }

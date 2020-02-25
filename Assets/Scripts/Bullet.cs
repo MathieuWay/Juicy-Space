@@ -33,6 +33,7 @@ public class Bullet : MonoBehaviour
         {
             //-1 life
             Debug.Log("Une vie perdu");
+            Player.instance.HitPlayer();
             Destroy(gameObject);
         }
         else if(collision.gameObject.tag == "invader" && isPlayerShot)
