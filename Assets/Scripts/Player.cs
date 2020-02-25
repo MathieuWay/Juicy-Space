@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
             }
         }
         //Shoot
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             Instantiate(bulletPrefabs, transform.position + transform.up * offset, Quaternion.identity);
         }

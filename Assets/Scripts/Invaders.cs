@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Invaders : MonoBehaviour
 {
+    public static Invaders instance; 
     private GameObject[][] invadersArray;
     public int column;
     public int raw;
@@ -20,6 +21,10 @@ public class Invaders : MonoBehaviour
     public float deltaDeplacement;
     private List<GameObject> shooters;
 
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         count = 0.0f;
@@ -102,4 +107,8 @@ public class Invaders : MonoBehaviour
         Instantiate(projectil, position,Quaternion.identity);
     }
 
+    public void DestroyInvader(GameObject invader)
+    {
+        
+    }
 }

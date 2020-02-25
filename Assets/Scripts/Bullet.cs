@@ -28,14 +28,18 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("collision");
         if(collision.gameObject.tag == "Player")
         {
             //-1 life
             Debug.Log("Une vie perdu");
+            Destroy(gameObject);
         }
-        else if(collision.gameObject.tag == "Invaders" && isPlayerShot)
+        else if(collision.gameObject.tag == "invader" && isPlayerShot)
         {
-            Destroy(collision.gameObject);
+            Invaders.instance.DestroyInvader(collision.gameObject);
+            Debug.Log("destroy");
+            Destroy(gameObject);
         }
     }
 }
