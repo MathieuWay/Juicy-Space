@@ -101,6 +101,7 @@ MonoBehaviour:
   offset: 1
   bulletPrefabs: {fileID: 4568517043130607059, guid: 23cdb46eca8ea584a922fceb3af52237,
     type: 3}
+  lifeLeft: 3
 --- !u!61 &6125206003013147866
 BoxCollider2D:
   m_ObjectHideFlags: 0
