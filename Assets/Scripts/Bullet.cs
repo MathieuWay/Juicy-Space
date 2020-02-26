@@ -38,7 +38,8 @@ public class Bullet : MonoBehaviour
         }
         else if(collision.gameObject.tag == "invader" && isPlayerShot)
         {
-            Invaders.instance.DestroyInvader(collision.gameObject);
+            //Invaders.instance.DestroyInvader(collision.gameObject);
+            collision.gameObject.GetComponent<Invader>().DestroyInvader();
             Debug.Log("destroy");
             Destroy(gameObject);
         }
