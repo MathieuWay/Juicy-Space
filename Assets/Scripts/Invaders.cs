@@ -22,6 +22,8 @@ public class Invaders : MonoBehaviour
     private List<GameObject> shooters;
     private GameObject newShooter;
 
+    public bool started = false;
+
     private void Awake()
     {
         instance = this;
@@ -43,41 +45,43 @@ public class Invaders : MonoBehaviour
     
     void Update()
     {
-        count += Time.deltaTime;
-        countTir += Time.deltaTime;
-        if (count > deltaDeplacement)
+        if (started)
         {
-            count = 0;
-            if (!end)
+            count += Time.deltaTime;
+            countTir += Time.deltaTime;
+            if (count > deltaDeplacement)
             {
-                for (int i = 0; i < invadersArray.Length; i++)
+                count = 0;
+                if (!end)
                 {
-                    for (int j = 0; j < invadersArray[i].Length; j++)
+                    for (int i = 0; i < invadersArray.Length; i++)
                     {
-                        if (invadersArray[i][j] != null)
+                        for (int j = 0; j < invadersArray[i].Length; j++)
                         {
-                            invadersArray[i][j].transform.position = new Vector3(invadersArray[i][j].transform.position.x + (1 * sens), invadersArray[i][j].transform.position.y, invadersArray[i][j].transform.position.z);
-                            if ((invadersArray[i][j].transform.position.x == 6 && sens == 1) || (invadersArray[i][j].transform.position.x == -6 && sens == -1))
+                            if (invadersArray[i][j] != null)
                             {
-                                end = true;
+                                invadersArray[i][j].transform.position = new Vector3(invadersArray[i][j].transform.position.x + (1 * sens), invadersArray[i][j].transform.position.y, invadersArray[i][j].transform.position.z);
+                                if ((invadersArray[i][j].transform.position.x == 6 && sens == 1) || (invadersArray[i][j].transform.position.x == -6 && sens == -1))
+                                {
+                                    end = true;
+                                }
                             }
                         }
                     }
                 }
+                else
+                {
+                    ChangeLine();
+                }
             }
-            else
+            if (countTir > deltaTir)
             {
-                ChangeLine();
+                countTir = 0;
+                int random = Random.Range(0, shooters.Count - 1);
+                tir(shooters[random].transform.position);
+
             }
         }
-        if (countTir > deltaTir)
-        {
-            countTir = 0;
-            int random=Random.Range(0, shooters.Count - 1);
-            tir(shooters[random].transform.position);
-            
-        }
-        
     }
 
     private void Initialisation()
