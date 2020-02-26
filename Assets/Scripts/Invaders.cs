@@ -58,7 +58,8 @@ public class Invaders : MonoBehaviour
                     {
                         for (int j = 0; j < invadersArray[i].Length; j++)
                         {
-                            if (invadersArray[i][j] != null){
+                            if (invadersArray[i][j] != null)
+                            {
                                 invadersArray[i][j].transform.position = new Vector3(invadersArray[i][j].transform.position.x + (1 * sens), invadersArray[i][j].transform.position.y, invadersArray[i][j].transform.position.z);
                                 if ((invadersArray[i][j].transform.position.x == 8 && sens == 1) || (invadersArray[i][j].transform.position.x == -8 && sens == -1))
                                 {
@@ -98,19 +99,21 @@ public class Invaders : MonoBehaviour
 
     private void ChangeLine()
     {
+        Debug.Log("Change Line");
         end = false;
         sens *= -1;
         for (int i = 0; i < invadersArray.Length; i++)
         {
             for (int j = 0; j < invadersArray[i].Length; j++)
             {
+                Debug.Log(i + " " + j + invadersArray[i][j]);
                 if (invadersArray[i][j] != null)
                 {
                     invadersArray[i][j].transform.position = new Vector3(invadersArray[i][j].transform.position.x, invadersArray[i][j].transform.position.y - 1, invadersArray[i][j].transform.position.z);
-                }
-                if (invadersArray[i][j].transform.position.y <= -4)
-                {
-                    Player.gameOver();
+                    if (invadersArray[i][j].transform.position.y <= -4)
+                    {
+                        Player.gameOver();
+                    }
                 }
             }
         }

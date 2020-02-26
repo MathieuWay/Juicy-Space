@@ -5,8 +5,8 @@ using UnityEngine;
 public class testPartcules : MonoBehaviour
 {
     private bool done;
-    public Color colorRight; //0.914,0.047,0.253
-    public Color colorLeft;  //0.023,0.981,0.318
+    public Color colorRight; 
+    public Color colorLeft;  
     private float r;
     private float g;
     private float b;
@@ -15,8 +15,8 @@ public class testPartcules : MonoBehaviour
     private float posB;
     void Start()
     {
-        Debug.Log("right : "+ colorRight);
-        Debug.Log("left : " + colorLeft);
+        //Debug.Log("right : "+ colorRight);
+        //Debug.Log("left : " + colorLeft);
         if (colorRight.r < colorLeft.r)
         {
             r = colorRight.r;
@@ -91,10 +91,10 @@ public class testPartcules : MonoBehaviour
         {
             posB = pos;
         }
-        Debug.Log("position : " + pos);
+        //Debug.Log("position : " + pos);
         Color col = new Color(r+(Mathf.Abs(colorLeft.r - colorRight.r) / 100 * posR), g+ (Mathf.Abs(colorLeft.g - colorRight.g) / 100 * posG), b + (Mathf.Abs(colorLeft.b - colorRight.b) / 100 * posB));
         col.a = 1;
-        Debug.Log(col);
+        //Debug.Log(col);
         return col;
 
     }
