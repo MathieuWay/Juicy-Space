@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Invaders : MonoBehaviour
 {
-    public static Invaders instance; 
+    public static Invaders instance;
     private GameObject[][] invadersArray;
     public int column;
     public int raw;
@@ -42,7 +42,7 @@ public class Invaders : MonoBehaviour
         }
     }
 
-    
+
     void Update()
     {
         if (started)
@@ -58,10 +58,9 @@ public class Invaders : MonoBehaviour
                     {
                         for (int j = 0; j < invadersArray[i].Length; j++)
                         {
-                            if (invadersArray[i][j] != null)
-                            {
+                            if (invadersArray[i][j] != null){
                                 invadersArray[i][j].transform.position = new Vector3(invadersArray[i][j].transform.position.x + (1 * sens), invadersArray[i][j].transform.position.y, invadersArray[i][j].transform.position.z);
-                                if ((invadersArray[i][j].transform.position.x == 6 && sens == 1) || (invadersArray[i][j].transform.position.x == -6 && sens == -1))
+                                if ((invadersArray[i][j].transform.position.x == 8 && sens == 1) || (invadersArray[i][j].transform.position.x == -8 && sens == -1))
                                 {
                                     end = true;
                                 }
@@ -96,7 +95,7 @@ public class Invaders : MonoBehaviour
             }
         }
     }
-    
+
     private void ChangeLine()
     {
         end = false;
@@ -108,6 +107,10 @@ public class Invaders : MonoBehaviour
                 if (invadersArray[i][j] != null)
                 {
                     invadersArray[i][j].transform.position = new Vector3(invadersArray[i][j].transform.position.x, invadersArray[i][j].transform.position.y - 1, invadersArray[i][j].transform.position.z);
+                }
+                if (invadersArray[i][j].transform.position.y <= -4)
+                {
+                    Player.gameOver();
                 }
             }
         }
