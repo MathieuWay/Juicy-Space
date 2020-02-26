@@ -31,16 +31,21 @@ public class ConductorCustom : MonoBehaviour
 
     public static float BeatsShownOnScreen = 4f;
 
+    public int moveBPM;
+    public int shootBPM;
+
     //count down canvas
     private const int StartCountDown = 3;
     public GameObject countDownCanvas;
     public Text countDownText;
 
     public int bpm;
-    public AudioClip clip;
+    public AudioClip clip1;
+    public AudioClip clip2;
 
 
-    public AudioSource audioSource;
+    public AudioSource audioSource1;
+    public AudioSource audioSource2;
 
     //Get Instance
     private static ConductorCustom instance;
@@ -59,7 +64,7 @@ public class ConductorCustom : MonoBehaviour
     void Start()
     {
         //pausedTime += (float)AudioSettings.dspTime - pauseTimeStamp;
-        audioSource = GetComponent<AudioSource>();
+        audioSource1 = GetComponent<AudioSource>();
         //reset static variables
         paused = true;
         pauseTimeStamp = -1f;
@@ -73,10 +78,11 @@ public class ConductorCustom : MonoBehaviour
         //initialize fields
         crotchet = 60f / bpm;
 
-        songLength = clip.length;
+        songLength = clip1.length;
 
         //initialize audioSource
-        audioSource.clip = clip;
+        audioSource1.clip = clip1;
+        audioSource2.clip = clip2;
 
         //start countdown
         StartCoroutine(CountDown());
@@ -88,11 +94,15 @@ public class ConductorCustom : MonoBehaviour
         dsptimesong = (float)AudioSettings.dspTime;
 
         //play song
-        audioSource.Play();
+        audioSource1.Play();
+        audioSource2.Play();
 
         //unpause
         paused = false;
         songStarted = true;
+        Invaders.instance.started = true;
+        Invaders.instance.deltaDeplacement = crotchet * moveBPM;
+        Invaders.instance.deltaTir = crotchet * shootBPM;
     }
 
     public void pause()
@@ -136,7 +146,7 @@ public class ConductorCustom : MonoBehaviour
             if (pauseTimeStamp < 0f) //not managed
             {
                 pauseTimeStamp = (float)AudioSettings.dspTime;
-                audioSource.Pause();
+                audioSource1.Pause();
             }
 
             return;
@@ -144,13 +154,13 @@ public class ConductorCustom : MonoBehaviour
         else if (pauseTimeStamp > 0f) //resume not managed
         {
             pausedTime += (float)AudioSettings.dspTime - pauseTimeStamp;
-            audioSource.Play();
+            audioSource1.Play();
 
             pauseTimeStamp = -1f;
         }
 
         //calculate songposition
-        songposition = (float)(AudioSettings.dspTime - dsptimesong - pausedTime) * audioSource.pitch;
+        songposition = (float)(AudioSettings.dspTime - dsptimesong - pausedTime) * audioSource1.pitch;
 
         //check to see if the song reaches its end
         if (songposition > songLength)
@@ -178,7 +188,7 @@ public class ConductorCustom : MonoBehaviour
 
     public float GetSongPosition()
     {
-        return (float)(AudioSettings.dspTime - dsptimesong - pausedTime) * audioSource.pitch;
+        return (float)(AudioSettings.dspTime - dsptimesong - pausedTime) * audioSource1.pitch;
     }
 
     public float GetCrochet()
@@ -193,9 +203,9 @@ public class ConductorCustom : MonoBehaviour
 
     public void RestartSong()
     {
-        audioSource.time = 0f;
+        audioSource1.time = 0f;
         dsptimesong = (float)AudioSettings.dspTime;
-        audioSource.Play();
+        audioSource1.Play();
         paused = false;
         songStarted = true;
     }
