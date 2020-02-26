@@ -57,10 +57,11 @@ public class Invaders : MonoBehaviour
                         if (invadersArray[i][j] != null)
                         {
                             invadersArray[i][j].transform.position = new Vector3(invadersArray[i][j].transform.position.x + (1 * sens), invadersArray[i][j].transform.position.y, invadersArray[i][j].transform.position.z);
-                            if ((invadersArray[i][j].transform.position.x == 6 && sens == 1) || (invadersArray[i][j].transform.position.x == -6 && sens == -1))
+                            if ((invadersArray[i][j].transform.position.x == 8 && sens == 1) || (invadersArray[i][j].transform.position.x == -8 && sens == -1))
                             {
                                 end = true;
                             }
+                            
                         }
                     }
                 }
@@ -104,6 +105,10 @@ public class Invaders : MonoBehaviour
                 if (invadersArray[i][j] != null)
                 {
                     invadersArray[i][j].transform.position = new Vector3(invadersArray[i][j].transform.position.x, invadersArray[i][j].transform.position.y - 1, invadersArray[i][j].transform.position.z);
+                }
+                if (invadersArray[i][j].transform.position.y <= -4)
+                {
+                    Player.gameOver();
                 }
             }
         }

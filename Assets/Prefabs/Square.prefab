@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 113816429602998893}
   - component: {fileID: -8503011692986626147}
   - component: {fileID: -461965645814071408}
+  - component: {fileID: 6034862064185900153}
   m_Layer: 0
   m_Name: Square
   m_TagString: invader
@@ -130,3 +131,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6034862064185900153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062005286711931900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b137b60e78d53c40a7774aa8b3dc755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorRight: {r: 0.19036008, g: 0.4528302, b: 0.027767902, a: 0}
+  colorLeft: {r: 0.37893882, g: 0.7264151, b: 0.051397286, a: 0}

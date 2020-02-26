@@ -11,8 +11,8 @@ public class Player : MonoBehaviour
     public GameObject bulletPrefabs;
     public int lifeLeft;
 
-    public delegate void OnGameOver();
-    public static OnGameOver gameOver;
+    public delegate void OnGameOverByPlayerDead();
+    public static OnGameOverByPlayerDead gameOver;
 
     private void Awake()
     {
@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
         if(lifeLeft <= 0)
         {
             if(gameOver != null)
-            gameOver();
+                gameOver();
         }
     }
 
