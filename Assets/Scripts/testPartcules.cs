@@ -47,20 +47,20 @@ public class testPartcules : MonoBehaviour
     void Update()
     {
         gameObject.GetComponent<SpriteRenderer>().color = transformPositionToColor(Player.instance.transform.position.x);
-        if (Input.GetKeyDown(KeyCode.A) && !done)
-        {
-            done = true;
-            StartCoroutine(boom());
-        }
+        //if (Input.GetKeyDown(KeyCode.A) && !done)
+        //{
+        //    done = true;
+        //    StartCoroutine(boom());
+        //}
     }
 
-    IEnumerator boom()
-    {
-        transform.Translate(new Vector3(0.3f, 0, 0));
-        yield return new WaitForSeconds(0.2f);
-        transform.Translate(new Vector3(- 0.3f,0, 0));
-        done = false;
-    }
+    //IEnumerator boom()
+    //{
+    //    transform.Translate(new Vector3(0.3f, 0, 0));
+    //    yield return new WaitForSeconds(0.2f);
+    //    transform.Translate(new Vector3(- 0.3f,0, 0));
+    //    done = false;
+    //}
 
     private Color transformPositionToColor(float pos)
     {
