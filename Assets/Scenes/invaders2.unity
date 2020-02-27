@@ -456,7 +456,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   column: 7
   raw: 3
-  invader: {fileID: 1062005286711931900, guid: 1a8bf8c51611aa5429798aeaa3678ff9, type: 3}
+  invader: {fileID: 1282121973}
   projectil: {fileID: 8931039178994609433, guid: 4181583a736bbfe489d1af4483596e5a,
     type: 3}
   offsetI: 0
@@ -574,6 +574,12 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1282121973 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8018508526549122731, guid: 1a8bf8c51611aa5429798aeaa3678ff9,
+    type: 3}
+  m_PrefabInstance: {fileID: 767204530}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1970233725 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3233226731454216495, guid: f5cacf9f3c5e7fd418c247c6524f9b11,

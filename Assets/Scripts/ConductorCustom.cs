@@ -47,6 +47,8 @@ public class ConductorCustom : MonoBehaviour
     public AudioSource audioSource1;
     public AudioSource audioSource2;
 
+    public Animator anim;
+
     //Get Instance
     private static ConductorCustom instance;
     public static ConductorCustom Instance
@@ -64,7 +66,7 @@ public class ConductorCustom : MonoBehaviour
     void Start()
     {
         //pausedTime += (float)AudioSettings.dspTime - pauseTimeStamp;
-        audioSource1 = GetComponent<AudioSource>();
+        //audioSource1 = GetComponent<AudioSource>();
         //reset static variables
         paused = true;
         pauseTimeStamp = -1f;
@@ -83,6 +85,8 @@ public class ConductorCustom : MonoBehaviour
         //initialize audioSource
         audioSource1.clip = clip1;
         audioSource2.clip = clip2;
+
+        anim = GetComponent<Animator>();
 
         //start countdown
         StartCoroutine(CountDown());
@@ -103,6 +107,8 @@ public class ConductorCustom : MonoBehaviour
         Invaders.instance.started = true;
         Invaders.instance.deltaDeplacement = crotchet * moveBPM;
         Invaders.instance.deltaTir = crotchet * shootBPM;
+
+        anim.SetTrigger("triggerBoom");
     }
 
     public void pause()

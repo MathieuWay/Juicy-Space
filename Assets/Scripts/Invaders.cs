@@ -24,9 +24,14 @@ public class Invaders : MonoBehaviour
 
     public bool started = false;
 
+    //SOUND
+    public AudioSource source;
+    public AudioClip clipShoot;
+
     private void Awake()
     {
         instance = this;
+        source = GetComponent<AudioSource>();
     }
     void Start()
     {
@@ -121,6 +126,8 @@ public class Invaders : MonoBehaviour
 
     private void tir(Vector3 position)
     {
+        source.clip = clipShoot;
+        source.Play();
         Instantiate(projectil, position,Quaternion.identity);
     }
 
