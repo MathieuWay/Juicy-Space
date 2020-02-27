@@ -86,8 +86,6 @@ public class ConductorCustom : MonoBehaviour
         audioSource1.clip = clip1;
         audioSource2.clip = clip2;
 
-        anim = GetComponent<Animator>();
-
         //start countdown
         StartCoroutine(CountDown());
     }
