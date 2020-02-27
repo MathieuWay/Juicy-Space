@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
         //Shoot
         if (Input.GetKeyDown(KeyCode.Space) && Invaders.instance.started)
         {
-            Instantiate(bulletPrefabs, transform.position + transform.up * offset, Quaternion.identity);
+            Instantiate(bulletPrefabs, transform.position + Vector3.up * offset, Quaternion.identity);
         }
     }
 
