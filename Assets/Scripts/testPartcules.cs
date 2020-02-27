@@ -5,6 +5,7 @@ using UnityEngine;
 public class testPartcules : MonoBehaviour
 {
     private bool done;
+    public bool isParticuls;
     public Color colorRight; 
     public Color colorLeft;  
     private float r;
@@ -41,12 +42,28 @@ public class testPartcules : MonoBehaviour
         {
             b = colorLeft.b;
         }
-        gameObject.GetComponent<SpriteRenderer>().color = new Color((colorLeft.r+colorRight.r)/2, (colorLeft.g + colorRight.g) / 2, (colorLeft.b + colorRight.b) / 2);
+        if (isParticuls)
+        {
+            gameObject.GetComponent<ParticleSystem>().startColor = new Color((colorLeft.r + colorRight.r) / 2, (colorLeft.g + colorRight.g) / 2, (colorLeft.b + colorRight.b) / 2);
+        }
+        else
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = new Color((colorLeft.r + colorRight.r) / 2, (colorLeft.g + colorRight.g) / 2, (colorLeft.b + colorRight.b) / 2);
+        }
+        
     }
 
     void Update()
     {
-        gameObject.GetComponent<SpriteRenderer>().color = transformPositionToColor(Player.instance.transform.position.x);
+        if (isParticuls)
+        {
+            gameObject.GetComponent<ParticleSystem>().startColor = transformPositionToColor(Player.instance.transform.position.x);
+        }
+        else
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = transformPositionToColor(Player.instance.transform.position.x);
+        }
+        
         //if (Input.GetKeyDown(KeyCode.A) && !done)
         //{
         //    done = true;
