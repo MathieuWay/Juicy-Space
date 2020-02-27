@@ -174,8 +174,8 @@ public class ConductorCustom : MonoBehaviour
         //calculate songposition
         songposition = (float)(AudioSettings.dspTime - dsptimesong - pausedTime) * audioSource1.pitch;
         int currentBeat = (int)(songposition / crotchet);
-        Debug.Log("beat" + currentBeat);
-        ;        if(currentBeat > beatCount)
+        //Debug.Log("beat" + currentBeat);
+        if(currentBeat > beatCount)
         {
             beatCount = currentBeat;
             if(beat != null)
