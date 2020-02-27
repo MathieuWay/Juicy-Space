@@ -11,6 +11,9 @@ public class Player : MonoBehaviour
     public GameObject bulletPrefabs;
     public int lifeLeft;
 
+    private AudioSource source;
+    public AudioClip clip;
+
     public delegate void OnGameOverByPlayerDead();
     public static OnGameOverByPlayerDead gameOver;
 
@@ -18,6 +21,8 @@ public class Player : MonoBehaviour
     {
         instance = this;
         gameOver += GameOver;
+        source = GetComponent<AudioSource>();
+        source.clip = clip;
     }
 
     // Update is called once per frame
@@ -54,7 +59,8 @@ public class Player : MonoBehaviour
         //Shoot
         if (Input.GetKeyDown(KeyCode.Space) && Invaders.instance.started)
         {
-            Instantiate(bulletPrefabs, transform.position + transform.up * offset, Quaternion.identity);
+            source.Play();
+            Instantiate(bulletPrefabs, transform.position + Vector3.up * offset, Quaternion.identity);
         }
     }
 

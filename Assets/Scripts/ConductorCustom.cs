@@ -10,6 +10,11 @@ public class ConductorCustom : MonoBehaviour
     public delegate void SongCompletedAction();
     public static event SongCompletedAction songCompletedEvent;
 
+
+    //on Beat
+    public delegate void OnBeat(int bpmCount, float crochet);
+    public static event OnBeat beat;
+
     private float songLength;
 
     //if the whole game is paused
@@ -48,6 +53,9 @@ public class ConductorCustom : MonoBehaviour
     public AudioSource audioSource2;
 
     public Animator anim;
+
+    //BEAT
+    public int beatCount = 0;
 
     //Get Instance
     private static ConductorCustom instance;
@@ -106,7 +114,7 @@ public class ConductorCustom : MonoBehaviour
         Invaders.instance.deltaDeplacement = crotchet * moveBPM;
         Invaders.instance.deltaTir = crotchet * shootBPM;
 
-        anim.SetTrigger("triggerBoom");
+        //StartCoroutine("barreBPM");
     }
 
     public void pause()
@@ -165,11 +173,19 @@ public class ConductorCustom : MonoBehaviour
 
         //calculate songposition
         songposition = (float)(AudioSettings.dspTime - dsptimesong - pausedTime) * audioSource1.pitch;
+        int currentBeat = (int)(songposition / crotchet);
+        //Debug.Log("beat" + currentBeat);
+        if(currentBeat > beatCount)
+        {
+            beatCount = currentBeat;
+            if(beat != null)
+                beat(beatCount, crotchet);
+        }
 
         //check to see if the song reaches its end
         if (songposition > songLength)
         {
-            songStarted = false;
+            //songStarted = false;
 
             if (songCompletedEvent != null)
                 songCompletedEvent();
@@ -213,4 +229,14 @@ public class ConductorCustom : MonoBehaviour
         paused = false;
         songStarted = true;
     }
+
+    /*public IEnumerator barreBPM()
+    {
+        //  yield return new WaitForSeconds(crotchet - 0.05f);
+        while (true)
+        {
+            anim.Play("boom", 0, 0);
+            yield return new WaitForSeconds(crotchet * 2);
+        }
+    }*/
 }
