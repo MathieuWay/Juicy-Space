@@ -121,31 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &228790339 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 722560138817721323, guid: 930f12154cc19c74180b3427697ecb85,
-    type: 3}
-  m_PrefabInstance: {fileID: 2128941481}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &228790344
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 228790339}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: cceb52e4d73ddb44cbdee37577136ec2, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &229451118
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1068,6 +1043,11 @@ PrefabInstance:
       propertyPath: countDownText
       value: 
       objectReference: {fileID: 998417884}
+    - target: {fileID: 722560138817721321, guid: 930f12154cc19c74180b3427697ecb85,
+        type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1305302852}
     - target: {fileID: 722560138817721323, guid: 930f12154cc19c74180b3427697ecb85,
         type: 3}
       propertyPath: m_Name
