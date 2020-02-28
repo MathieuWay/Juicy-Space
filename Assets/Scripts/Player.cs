@@ -10,8 +10,14 @@ public class Player : MonoBehaviour
     public float offset;
     public GameObject bulletPrefabs;
     public int lifeLeft;
+    public float posNorm;
+    public int freqPos;
 
     private AudioSource source;
+    private AudioLowPassFilter lowpass;
+    private AudioHighPassFilter highpass;
+    public int freqRange = 5000;
+
     public AudioClip clip;
 
     public delegate void OnGameOverByPlayerDead();
@@ -22,12 +28,31 @@ public class Player : MonoBehaviour
         instance = this;
         gameOver += GameOver;
         source = GetComponent<AudioSource>();
+
+        highpass = GetComponent<AudioHighPassFilter>();
+        lowpass = GetComponent<AudioLowPassFilter>();
+
         source.clip = clip;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (GameFeelActivator.instance.FreqPosPass)
+        {
+            posNorm = Mathf.Abs(-range / 2 + transform.position.x) / range;
+            freqPos = (int)(22000 * posNorm) + 10;
+            int highpassPos = freqPos - freqRange;
+            if (highpassPos < 10)
+                highpassPos = 10;
+            highpass.cutoffFrequency = highpassPos;
+
+            int lowpassPos = freqPos + freqRange;
+            if (lowpassPos > 22000)
+                lowpassPos = 22000;
+            lowpass.cutoffFrequency = lowpassPos;
+        }
+
         //GO RIGHT
         if (Input.GetKey(KeyCode.RightArrow))
         {

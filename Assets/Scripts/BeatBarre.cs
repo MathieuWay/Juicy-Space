@@ -19,7 +19,7 @@ public class BeatBarre : MonoBehaviour
 
     public void OnBeat(int beatCount, float crochet)
     {
-        if(beatCount % 2 == 1)
+        if(beatCount % 2 == 1 && GameFeelActivator.instance.BeatBarre)
             StartCoroutine(delayBeat(crochet));
     }
 
