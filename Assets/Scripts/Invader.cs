@@ -7,6 +7,7 @@ public class Invader : MonoBehaviour
     public AudioClip diyngClip;
     private AudioSource source;
     private Animator anim;
+    public GameObject particles;
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -16,7 +17,10 @@ public class Invader : MonoBehaviour
      
     public void DestroyInvader()
     {
-        StartCoroutine("Die");
+        Instantiate(particles, transform.position, Quaternion.identity);
+        Invaders.instance.DestroyInvader(gameObject);
+        //Destroy(gameObject);
+        //StartCoroutine("Die");
     } 
     public IEnumerator Die()
     {
