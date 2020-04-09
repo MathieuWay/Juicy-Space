@@ -109,7 +109,12 @@ public class testPartcules : MonoBehaviour
             posB = pos;
         }
         //Debug.Log("position : " + pos);
-        Color col = new Color(r+(Mathf.Abs(colorLeft.r - colorRight.r) / 100 * posR), g+ (Mathf.Abs(colorLeft.g - colorRight.g) / 100 * posG), b + (Mathf.Abs(colorLeft.b - colorRight.b) / 100 * posB));
+        Color col;
+        if (GameFeelActivator.instance.ColorPos)
+            col = new Color(r + (Mathf.Abs(colorLeft.r - colorRight.r) / 100 * posR), g + (Mathf.Abs(colorLeft.g - colorRight.g) / 100 * posG), b + (Mathf.Abs(colorLeft.b - colorRight.b) / 100 * posB));
+        else
+            col = Color.white;
+
         col.a = 1;
         //Debug.Log(col);
         return col;

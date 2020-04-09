@@ -105,7 +105,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -9578,6 +9578,7 @@ GameObject:
   - component: {fileID: 8855521573473163487}
   - component: {fileID: 8855521573473163486}
   - component: {fileID: 8855521573473163473}
+  - component: {fileID: -2646409464697531187}
   m_Layer: 0
   m_Name: FX_bullet
   m_TagString: Untagged
@@ -14397,3 +14398,19 @@ CircleCollider2D:
   m_Offset: {x: -0.0032631308, y: 0}
   serializedVersion: 2
   m_Radius: 0.10790078
+--- !u!114 &-2646409464697531187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8855521573473163472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c084c72544e51d14d92297a2f9919306, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  lifeTime: 10
+  direction: 1
+  isPlayerShot: 1

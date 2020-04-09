@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public float range;
     public float offset;
     public GameObject bulletPrefabs;
+    public GameObject bulletPrefabsV2;
     public int lifeLeft;
     public float posNorm;
     public int freqPos;
@@ -19,6 +20,8 @@ public class Player : MonoBehaviour
     public int freqRange = 5000;
 
     public AudioClip clip;
+
+    private Animator anim;
 
     public delegate void OnGameOverByPlayerDead();
     public static OnGameOverByPlayerDead gameOver;
@@ -33,6 +36,8 @@ public class Player : MonoBehaviour
         lowpass = GetComponent<AudioLowPassFilter>();
 
         source.clip = clip;
+
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -85,7 +90,9 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && Invaders.instance.started)
         {
             source.Play();
-            Instantiate(bulletPrefabs, transform.position + Vector3.up * offset, Quaternion.identity);
+            if(GameFeelActivator.instance.PlayerAnimShoot)
+                anim.Play("shot");
+            Instantiate(GameFeelActivator.instance.ShootQuality ? bulletPrefabsV2 : bulletPrefabs, transform.position + Vector3.up * offset, Quaternion.identity);
         }
     }
 

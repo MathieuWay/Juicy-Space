@@ -10,6 +10,7 @@ public class Invaders : MonoBehaviour
     public int raw;
     public GameObject invader;
     public GameObject projectil;
+    public GameObject projectilV2;
     public int offsetI;
     public int offsetJ;
     private int invadersCount;
@@ -79,7 +80,7 @@ public class Invaders : MonoBehaviour
                     ChangeLine();
                 }
             }
-            if (countTir > deltaTir)
+            if (countTir > deltaTir && invadersCount > 0)
             {
                 countTir = 0;
                 int random = Random.Range(0, shooters.Count - 1);
@@ -128,7 +129,7 @@ public class Invaders : MonoBehaviour
     {
         source.clip = clipShoot;
         source.Play();
-        Instantiate(projectil, position,Quaternion.identity);
+        Instantiate(GameFeelActivator.instance.ShootQuality ? projectilV2 : projectil, position,Quaternion.identity);
     }
 
     public void DestroyInvader(GameObject invader)
